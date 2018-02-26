@@ -57,7 +57,7 @@ Official assessments (Inspection report, property valuation, energy ratings, rad
 * Expected usage:
 ```
 Investor / Owner-occupier
-```	
+```
 * Location:
 ```
 County > Town > Area
@@ -65,7 +65,7 @@ Coast / Interior
 Land zoning and restrictions, local building activity, local regulationss
 Air quality
 Traffic volume
-```	
+```
 * Access to services:
 ```
 Public transport (train, luas, bus, main road)
@@ -77,7 +77,7 @@ Amenities (cinema, pub, ...)
 Proximity to local employment opportunities
 Sports facilities (gym, swimming pool, football pitch)
 Green areas, Parks
-```	
+```
 * Taxes and fees:
 ```
 Management / maintenance fee
@@ -87,7 +87,7 @@ Property tax, current taxes paid, tax exemptions
 ```
 Past sell prices for the property, mortgage records attached to those, taxes
 Value of houses in the vicinity, and in the broader area
-```	
+```
 * Demographics:
 ```
 Cost of living
@@ -104,7 +104,7 @@ Ethnic profile
 Family status (single, couple, children, retired)
 Death rate
 Birth rate
-```	
+```
 * External factors:
 ```
 Economic indicators (local and globally), trade market, Consumer Price Index, Salary growth, Unemployment rate, GDP
@@ -127,7 +127,7 @@ Some examples:
 Sqm (square meters) related features: Imputed by mean within sub area
 Distance-related features: Imputed by mean within sub area
 Remove record if price per sqm > X
-```	
+```
 * Missing values
 ```
 Build Year: Imputed by most common build year in sub area
@@ -197,7 +197,6 @@ When deploying to production, this can be done with Jenkins (CI), Docker (contai
 
 
 ## 6. How would you validate the accuracy of the model?
-
 In supervised predictive modeling, typically the available data (predictors and target values) is split (randomly) in two sets:
 1) Training (70-90% of the data), to train your model by known sets of inputs and outputs.
 2) Test (10-30% of the data), to apply once the model is built, and check its accuracy (i.e. predicted vs actual target values).
@@ -216,5 +215,15 @@ Cross-validation might be used instead of the single Training-Validation (or Tra
 
 
 ## 7. How would you deploy to production?
+Predictive models are typically built in Python or R, but most consumers of these models are engineers that use a completely different software stack.
+This is improving continuously, but is not as straightforward process as it could be.
+The process to turn Python models into production is generally more developed at this point than the same for R models.
 
+One way is to export the model as a XML specification (with PMML, Predictive Modeling Markup Language), and then use it for in-database scoring.
+
+Another way is to make it accessible via Web API. For Python for example, the Flask package can be used to create the API endpoint. The model is then deployed as a micro-webservice/API on a cloud production server, that can be called by the consumers.
+
+For R one way is to save the trained model as a stored procedure, this then can be invoked from R or any language that supports Transact-SQL (Java, Python, etc.), to make predictions on new observations.
+
+For example, IBM has implemented many ML algorithms as in-database stored procedures on their DB2 Warehouse on Cloud software, and also created the ibmdbR CRAN-R package with access to the in-database ML algorithms, models and R objects to simplify this process.
 
