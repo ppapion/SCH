@@ -166,22 +166,28 @@ The enhanced variables might or not replace the original ones.
 
 ## 4. What software could be leveraged?
 * Database
+
 For this particular problem, most of the data could be stored in a traditional RDBMS like PostgreSQL, Microsoft SQL Server, MySQL, Oracle, DB2 etc, either on premises or on the Cloud (hosted by AWS, Azure, Oracle cloud, IBM cloud etc).
 Most of these databases also handle unstructured / No-SQL data sources, or could move to a No-SQL database (MongoDB, ElasticSearch, HBase etc).
 
 * Coding language
+
 For exploratory analysis, statistical modeling and machine learning, R or Python (there is also SAS and Matlab). There are plenty of ML packages available for them (Scikit, NumPy, TensorFlow for Python for example, Caret and others for R).
 
 * Prototyping and sharing the model
+
 Jupyter Notebook.
 
 * Visualisation / Reporting
+
 The languages above have those tools (for example ggplot2 for R, matplotlib for Python), also can incorporate some BI dashboard like in Tableau.
 
 * Code repository
+
 GitHub would be the choice.
 
 * Deployment, Monitoring, Maintenance
+
 When deploying to production, this can be done with Jenkins (CI), Docker (containers) and Kubernetes (management).
 
 
