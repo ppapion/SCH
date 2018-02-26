@@ -29,89 +29,88 @@ This continues at the reporting phase when presenting the results, and later dur
 House prices are affected by many factors (some studies mention 400+ predictors), but as in other modeling problems a smaller subset might have the most impact.
 
 I would collect data from several areas (each with their own attributes), such as:
-
 * Property type: 
 ```
-	House (semi-detached, detached, terraced)
-	Apartment
-	Duplex
-	Studio
+House (semi-detached, detached, terraced)
+Apartment
+Duplex
+Studio
 ```
 * Property features:
 ```
-	Size (square meters)
-	Layout and orientation
-	Number of bedrooms (and size)
-	Number of bathrooms (and size)
-	Facilities (Parking, central heating -gas, oil-, lift, internet connection, balcony/terrace/garden)
-	Less quantifiable (light, views, noise)
+Size (square meters)
+Layout and orientation
+Number of bedrooms (and size)
+Number of bathrooms (and size)
+Facilities (Parking, central heating -gas, oil-, lift, internet connection, balcony/terrace/garden)
+Less quantifiable (light, views, noise)
 ``` 
 * Property condition:
 ```
-	New or second hand (build year)
-	Untouched / Redecorated / Renovated / Repairs required
-	Floor / Kitchen / Bathroom(s) 
-	Materials / construction quality / finishing
-	Windows isolation level
-	Official assessments (Inspection report, property valuation, energy ratings, radon risk map)
+New or second hand (build year)
+Untouched / Redecorated / Renovated / Repairs required
+Floor / Kitchen / Bathroom(s) 
+Materials / construction quality / finishing
+Windows isolation level
+Official assessments (Inspection report, property valuation, energy ratings, radon risk map)
 ```
 * Expected usage:
 ```
-	Investor / Owner-occupier
+Investor / Owner-occupier
 ```	
 * Location:
 ```
-	County > Town > Area
-	Coast / Interior
-	Land zoning and restrictions, local building activity, local regulationss
-	Air quality
-	Traffic volume
+County > Town > Area
+Coast / Interior
+Land zoning and restrictions, local building activity, local regulationss
+Air quality
+Traffic volume
 ```	
 * Access to services:
 ```
-	Public transport (train, luas, bus, main road)
-	Road quality
-	School
-	Hospital
-	Shopping centre
-	Amenities (cinema, pub, ...)
-	Proximity to local employment opportunities
-	Sports facilities (gym, swimming pool, football pitch)
-	Green areas, Parks
+Public transport (train, luas, bus, main road)
+Road quality
+School
+Hospital
+Shopping centre
+Amenities (cinema, pub, ...)
+Proximity to local employment opportunities
+Sports facilities (gym, swimming pool, football pitch)
+Green areas, Parks
 ```	
 * Taxes and fees:
 ```
-	Management / maintenance fee
-	Property tax, current taxes paid, tax exemptions
+Management / maintenance fee
+Property tax, current taxes paid, tax exemptions
 ```
 * Historical:
 ```
-	Past sell prices for the property, mortgage records attached to those, taxes
-	Value of houses in the vicinity, and in the broader area
+Past sell prices for the property, mortgage records attached to those, taxes
+Value of houses in the vicinity, and in the broader area
 ```	
 * Demographics:
 ```
-	Cost of living
-	Crime levels
-	Work prospects
-	Household income
-	Employment status
-	Education levels
-	Occupation
-	Social status
-	Age
-	Gender
-	Ethnic profile
-	Family status (single, couple, children, retired)
-	Death rate
-	Birth rate
+Cost of living
+Crime levels
+Work prospects
+Household income
+Employment status
+Education levels
+Occupation
+Social status
+Age
+Gender
+Ethnic profile
+Family status (single, couple, children, retired)
+Death rate
+Birth rate
 ```	
 * External factors:
 ```
-	Economic indicators (local and globally), trade market, Consumer Price Index, Salary growth, Unemployment rate, GDP
-	Central bank measures (interest rates, credit availability, banking deposit rate)
-	Government policies (property tax, tax relief, general and infrastructure development plans)
-	Migration and demographic changes
+Economic indicators (local and globally), trade market, Consumer Price Index, Salary growth, Unemployment rate, GDP
+Central bank measures (interest rates, credit availability, banking deposit rate)
+Government policies (property tax, tax relief, general and infrastructure development plans)
+Migration and demographic changes
 ```
 
 ## 3. What data cleansing steps would be needed?
@@ -125,40 +124,40 @@ Raw inspection or using histograms, scatterplots etc will help identify the cont
 Some examples:
 * Outlier Correction
 ```
-	Sqm (square meters) related features: Imputed by mean within sub area
-	Distance-related features: Imputed by mean within sub area
-	Remove record if price per sqm > X
+Sqm (square meters) related features: Imputed by mean within sub area
+Distance-related features: Imputed by mean within sub area
+Remove record if price per sqm > X
 ```	
 * Missing values
 ```
-	Build Year: Imputed by most common build year in sub area
-	Number of Rooms: Imputed by average number of rooms in similarly sized apartments within the sub area
-	State: Imputed using the build year and sub area 
+Build Year: Imputed by most common build year in sub area
+Number of Rooms: Imputed by average number of rooms in similarly sized apartments within the sub area
+State: Imputed using the build year and sub area 
 ```
 * Poor quality on historical data
 ```
-	Discard altogether, or cluster older records into one group.
+Discard altogether, or cluster older records into one group.
 ```
 * Cluster areas/neighborhoods into smaller groups, based in some criteria such as avg sales/month or avg price/sqm.
 
 * Correct older house prices to account for accumulated inflation since then, so we can compare prices like to like:
 ```
 If CPI = Consumer Price Index, then the value of 2005 Euros vs 2017 would be:
-	2017 EUR value = (2017 CPI / 2005 CPI) * 2005 EUR value
+2017 EUR value = (2017 CPI / 2005 CPI) * 2005 EUR value
 ```
 , this gives the "Purchasing Power" in 2005 relative to 2017
 
 Then there is the topic of data enhancement, by creating, combining, splitting variables to improve prediction accuracy:
 * Create new variables:
 ```
-	price per sqm
-	bathrooms/bedrooms ratio
-	Total rooms/sqm ratio
+price per sqm
+bathrooms/bedrooms ratio
+Total rooms/sqm ratio
 ```
 * Combine variables for model simplicity:
 ```
-	Combine distance to school, hospital, bus... into "distance to services"
-	Limit top 25 areas and group the rest in "Other"
+Combine distance to school, hospital, bus... into "distance to services"
+Limit top 25 areas and group the rest in "Other"
 ```
 * Split variables for model simplicity
 	
