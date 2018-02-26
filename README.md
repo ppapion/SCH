@@ -165,7 +165,7 @@ The enhanced variables might or not replace the original ones.
 
 
 ## 4. What software could be leveraged?
-* Database 
+* Database
 For this particular problem, most of the data could be stored in a traditional RDBMS like PostgreSQL, Microsoft SQL Server, MySQL, Oracle, DB2 etc, either on premises or on the Cloud (hosted by AWS, Azure, Oracle cloud, IBM cloud etc).
 Most of these databases also handle unstructured / No-SQL data sources, or could move to a No-SQL database (MongoDB, ElasticSearch, HBase etc).
 
