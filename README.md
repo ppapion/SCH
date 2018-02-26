@@ -192,8 +192,18 @@ When deploying to production, this can be done with Jenkins (CI), Docker (contai
 
 
 ## 5. What code would need to be built and tested?
+Whether using Jupyter notebook to prototype the predictive model or an IDE (like RStudio for R, or PyCharm for Python), the code should be step by step from importing the datasets, analysing and preparing the data (select, clean, enhance, aggregate, merge), creating the model and validating it.
 
+Testing should cover both the algorithms and the data inputs to them.
 
+It is notoriously difficult to test ML algorithms because the outputs can be non deterministic and non-obvious, but some guidelines apply:
+* Keep them deterministic as possible (if using randomised inputs for example, seed the random number so it can be reproduce).
+* Test small portions of the code.
+* Reset graphs between each test.
+* Check the new behavior vs test cases with a known outcome.
+* For a given test data set, if possible compare your model results vs results from independent models that have published their results.
+
+Once the model is validated it can be saved and stored for later use in production (some options are discussed in section 7.), and this process needs testing too.
 
 
 ## 6. How would you validate the accuracy of the model?
@@ -202,8 +212,8 @@ In supervised predictive modeling, typically the available data (predictors and 
 2) Test (10-30% of the data), to apply once the model is built, and check its accuracy (i.e. predicted vs actual target values).
 
 But quite often the data is split in three sets:
-1) Training (50-80%), as before
-2) Validation (10-25%), evaluates the model fit while tuning its parameters
+1) Training (50-80%), as before.
+2) Validation (10-25%), evaluates the model fit while tuning its parameters.
 3) Test (10-25%) - evaluate the final model fit and estimate the accuracy.
 
 Also, cross-validation might be used. This technique partitions the training dataset into a number K of subsets (K-folds). 
@@ -211,19 +221,17 @@ One fold is set aside for validation, while the rest of the data (K-1 folds) is 
 The process repeats for each of the folds. 
 By comparing the accuracy statistics from the various folds, you can assess the quality of the data set and the reliability of the predictions. 
 
-Cross-validation might be used instead of the single Training-Validation (or Training-Validation-Test) approach, 
-
 
 ## 7. How would you deploy to production?
-Predictive models are typically built in Python or R, but most consumers of these models are engineers that use a completely different software stack.
-This is improving continuously, but is not as straightforward process as it could be.
-The process to turn Python models into production is generally more developed at this point than the same for R models.
+Predictive models are built in Python or R, but typical consumers of these models are engineers that use a completely different software stack. This is improving continuously, but is not as straightforward process as it could be.
 
 One way is to export the model as a XML specification (with PMML, Predictive Modeling Markup Language), and then use it for in-database scoring.
 
-Another way is to make it accessible via Web API. For Python for example, the Flask package can be used to create the API endpoint. The model is then deployed as a micro-webservice/API on a cloud production server, that can be called by the consumers.
+Another way is to make the model accessible via Web API. For Python for example, the Flask package can be used to create the API endpoint. The model is then deployed as a micro-webservice/API on a cloud production server, that can be called by the consumers.
 
-For R one way is to save the trained model as a stored procedure, this then can be invoked from R or any language that supports Transact-SQL (Java, Python, etc.), to make predictions on new observations.
+There is a similar process for R. The resulting model can be serialised and saved in RDS format (saveRDS() function), later retrieved (with readRDS()) and generate the API with the Jug R package (there might be similar packages that do the same).
 
-For example, IBM has implemented many ML algorithms as in-database stored procedures on their DB2 Warehouse on Cloud software, and also created the ibmdbR CRAN-R package with access to the in-database ML algorithms, models and R objects to simplify this process.
+Another popular way for R models is to save the trained model as a stored procedure, this can later be invoked from R or any language that supports Transact-SQL (Java, Python, etc.), to make predictions on new observations.
+
+For example, IBM has implemented many ML algorithms as in-database stored procedures on its DB2 Warehouse on Cloud software, and also created the ibmdbR CRAN-R package with access to the in-database ML algorithms, models and R objects to simplify this process.
 
