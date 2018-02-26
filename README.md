@@ -107,7 +107,7 @@ Birth rate
 ```
 * External factors:
 ```
-Economic indicators (local and globally), trade market, Consumer Price Index, Salary growth, Unemployment rate, GDP
+Economic indicators (local, global), trade market, Consumer Price Index, Salary growth, Unemployment rate, GDP
 Central bank measures (interest rates, credit availability, banking deposit rate)
 Government policies (property tax, tax relief, general and infrastructure development plans)
 Migration and demographic changes
@@ -166,29 +166,23 @@ The enhanced variables might or not replace the original ones.
 
 ## 4. What software could be leveraged?
 * Database
-
 For this particular problem, most of the data could be stored in a traditional RDBMS like PostgreSQL, Microsoft SQL Server, MySQL, Oracle, DB2 etc, either on premises or on the Cloud (hosted by AWS, Azure, Oracle cloud, IBM cloud etc).
 Most of these databases also handle unstructured / No-SQL data sources, or could move to a No-SQL database (MongoDB, ElasticSearch, HBase etc).
 
 * Coding language
-
 For exploratory analysis, statistical modeling and machine learning, R or Python (there is also SAS and Matlab). There are plenty of ML packages available for them (Scikit, NumPy, TensorFlow for Python for example, Caret and others for R).
 
 * Prototyping and sharing the model
-
 Jupyter Notebook.
 
 * Visualisation / Reporting
-
-The languages above have those tools (for example ggplot2 for R, matplotlib for Python), also can incorporate some BI dashboard like in Tableau.
+The languages above provide some tools (ex. ggplot2 for R, matplotlib for Python), also BI dashboards like Tableau.
 
 * Code repository
-
 GitHub would be the choice.
 
 * Deployment, Monitoring, Maintenance
-
-When deploying to production, this can be done with Jenkins (CI), Docker (containers) and Kubernetes (management).
+The predictive model can be deployed into the pipeline similar to other applications, using Jenkins (CI), Docker (containers) and Kubernetes (management).
 
 
 ## 5. What code would need to be built and tested?
