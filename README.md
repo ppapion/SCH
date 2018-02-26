@@ -138,7 +138,7 @@ State: Imputed using the build year and sub area
 ```
 Discard altogether, or cluster older records into one group.
 ```
-* Cluster areas/neighborhoods into smaller groups, based in some criteria such as avg sales/month or avg price/sqm.
+* Cluster areas/neighborhoods, based in some criteria such as avg sales/month or avg price/sqm.
 
 * Correct older house prices to account for accumulated inflation since then, so we can compare prices like to like:
 ```
